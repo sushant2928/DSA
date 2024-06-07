@@ -1,4 +1,6 @@
 // sort in increasing order
+// TC : O(n^2)
+// SC : O(1)
 const selectionSort = (arr) => {
   for (let i = 0; i < arr.length - 1; i++) {
     let smallestNumberIndex = i;
