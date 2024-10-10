@@ -1,7 +1,7 @@
 'use strict'
-class Node {
+class ListNode {
     constructor(nodeOrvalue) {
-        if (nodeOrvalue instanceof Node) {
+        if (nodeOrvalue instanceof ListNode) {
             this.value = nodeOrvalue.value
             this.next = nodeOrvalue.next
         } else {
@@ -15,7 +15,7 @@ class LinkedList {
     #head
     #tail
     insert(value) {
-        const node = new Node(value)
+        const node = new ListNode(value)
         if (this.isEmpty()) {
             this.#head = this.#tail = node
         } else {
@@ -35,7 +35,7 @@ class LinkedList {
             current = current.next
         }
         if (currentIndex === index - 1) {
-            const node = new Node(value)
+            const node = new ListNode(value)
             node.next = current.next
             current.next = node
         }
@@ -47,7 +47,7 @@ class LinkedList {
             this.insert(value)
         } else {
             const oldHead = this.#head
-            this.#head = new Node(value)
+            this.#head = new ListNode(value)
             this.#head.next = oldHead
         }
     }
@@ -111,7 +111,7 @@ class LinkedList {
     }
 
     indexOf(value) {
-        let current = new Node(this.#head)
+        let current = new ListNode(this.#head)
         let index = -1
         while (current?.value === 0 || current?.value) {
             index += 1
@@ -141,7 +141,7 @@ class LinkedList {
         }
     }
     toString() {
-        let current = new Node(this.#head)
+        let current = new ListNode(this.#head)
         let linkedListString = ""
         while (current?.value === 0 || current?.value) {
             linkedListString = linkedListString ? linkedListString + " --> " + String(current.value) : String(current.value)
@@ -152,6 +152,23 @@ class LinkedList {
 
     isEmpty() {
         return !this.#head
+    }
+    swapPairs() {
+        let head = this.#head
+        const node = new ListNode()
+        node.next = head
+        let prev = node
+        while (head && head?.next) {
+            let node1 = head
+            let node2 = head.next
+            prev.next = node2
+            node1.next = node2.next
+            node2.next = node1
+            this.#tail = node1
+            prev = node1
+            head = node1?.next
+        }
+        this.#head = node.next
     }
 }
 
@@ -175,4 +192,7 @@ console.log(linkedList.toString())
 linkedList.deleteAtFromEnd(3)
 console.log(linkedList.toString())
 console.log(linkedList.indexOf(5))
+console.log(linkedList.toString())
+linkedList.swapPairs()
+console.log(linkedList.toString())
 
