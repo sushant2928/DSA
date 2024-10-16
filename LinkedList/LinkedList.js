@@ -170,6 +170,23 @@ class LinkedList {
         }
         this.#head = node.next
     }
+    reverseInKGroups(k, startingNode = this.#head) {
+        if (!startingNode || !startingNode?.next) return startingNode
+        let prev = startingNode
+        let current = startingNode.next
+        let index = k - 1
+        while (prev && current && index) {
+            const next = current.next
+            current.next = prev
+            if (index > 1) {
+                prev.next = next
+            } else if (index === 1) {
+                prev.next = this.reverseInKGroups(k, next)
+            }
+            index -= 1
+        }
+        return prev
+    }
 }
 
 const linkedList = new LinkedList()
