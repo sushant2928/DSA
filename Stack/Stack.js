@@ -5,6 +5,7 @@
  * @method pop
  * @method peek
  * @method isEmpty
+ * @method printStack
  */
 
 class Stack {
