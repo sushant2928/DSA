@@ -47,3 +47,7 @@ console.log(stack.peek());
 console.log(stack.pop());
 console.log(stack.peek());
 console.log(stack.printStack());
+
+module.exports = {
+  Stack,
+};
